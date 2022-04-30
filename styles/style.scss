@@ -1,0 +1,569 @@
+@use "custom" as *;
+@import './_custom.scss';
+
+/* ---------------------------- Start Screen Dimension ---------------------------- */
+$uhd: 2560px;
+$qhd: 1440px;
+$fhd: 1024px;
+$tablet: 768px;
+$mobile: 425px;
+/* ---------------------------- End Screen Dimension ---------------------------- */
+
+/* ---------------------------- Start Custom Scrollbar ---------------------------- */
+html::-webkit-scrollbar {
+    width: 0.8vw;
+}
+html::-webkit-scrollbar-thumb {
+    background-color: $pink-dark;
+}
+html::-webkit-scrollbar-track {
+    background-color: $black;
+}
+html::-webkit-scrollbar-button {
+    background-color: $black;
+}
+ol::-webkit-scrollbar {
+    width: 0.8vw;
+}
+ol::-webkit-scrollbar-thumb {
+    background-color: $black;
+}
+ol::-webkit-scrollbar-track {
+    background-color: $pink-dark;
+}
+ol::-webkit-scrollbar-button {
+    background-color: $pink-dark;
+}
+ol::-webkit-scrollbar-corner {
+    background-color: $pink-dark;
+}
+
+/* ---------------------------- End Custom Scrollbar ---------------------------- */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: $black !important;
+    overflow-x: hidden;
+}
+
+/* -------------------------- Start Navbar Customization -------------------------- */
+.menu {
+    background: $black;
+    h4 {
+        @media screen and (max-width:$tablet) {
+            font-size: 1.3rem;
+        }
+        @media screen and (min-width:$fhd) {
+            font-size: 1.1rem;
+        }
+        @media screen and (min-width:$qhd) {
+            font-size: 1.5rem;
+        }
+        @media screen and (min-width:$uhd) {
+            font-size: 1.6rem;
+        }
+    }
+    img {
+        @media screen and (max-width:$tablet) {
+            font-size: 1.3rem;
+        }
+        @media screen and (min-width:$fhd) {
+            font-size: 1rem;
+        }
+        @media screen and (min-width:$qhd) {
+            font-size: 1.5rem;
+        }
+    }
+    li {
+        padding: 0 1.5;
+        a {
+            font-weight: 600;
+            @media screen and (max-width:$tablet) {
+                font-size: 1.3rem;
+            }
+            @media screen and (min-width:$fhd) {
+                font-size: 1.1rem;
+            }
+            @media screen and (min-width:$qhd) {
+                font-size: 1.5rem;
+            }
+            @media screen and (min-width:$uhd) {
+                font-size: 2.3rem;
+            }
+        }
+    }
+}
+a:hover{
+    color: $pink-dark !important;
+}
+/* -------------------------- End Navbar Customization -------------------------- */
+
+/* --------------------------- Start Modal Customization -------------------------- */
+.modal-text {
+    @media screen and (max-width:$tablet) {
+        font-size: 0.75rem;
+    }
+    @media screen and (min-width:$fhd) {
+        font-size: 0.85rem;
+    }
+}
+.btn-close {
+    position: absolute;
+    right: 5%;
+}
+/* --------------------------- End Modal Customization -------------------------- */
+
+/* ----------------- Start Login/Register Button Customization ---------------- */
+.btn-rounded {
+    position: relative;
+    background-color: $black;
+    padding: 0.9375rem 4.375rem 0.9375rem 1.25rem;
+    color: $pink;
+    font-weight: 700;
+    font-size: 1.175rem;
+    margin: 0 1rem;
+    border: 0.2rem solid rgba($pink, 0.6);
+    span {
+        position: absolute;
+        background-color: $pink;
+        width: 2.5rem;
+        height: 2.5rem;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        i {
+            color: $black;
+            font-size: 1rem;
+            line-height: 2.5rem;
+        }
+    }
+    &:hover{
+        background-color: $pink-dark;
+        color: $black;
+    }
+}
+/* ----------------- End Login/Register Button Customization ---------------- */
+
+.section-title {
+    text-decoration: underline $pink-dark 5px;
+    text-underline-position: under;
+    h1 {
+        @media screen and (min-width:$uhd) {
+            font-size: 3rem;
+        }
+    }
+}
+
+/* ---------------- Start Members Section Customization --------------- */
+.accordion-item {
+    h4 {
+        @media screen and (min-width:$uhd) {
+            font-size: 2.5rem;
+        }
+    }
+    li {
+        @media screen and (min-width:$uhd) {
+            font-size: 1.5rem;
+        }
+    }
+}
+/* -------------------- Social Media Icons Customization -------------------- */
+.fab-3 {
+    color: $black;
+    @media screen and (max-width:$tablet) and (min-width:$mobile) {
+        font-size: 50px;
+    }
+    @media screen and (max-width:$qhd) and (min-width:$fhd) {
+        font-size: 60px;
+    }
+    @media screen and (min-width:$qhd) {
+        font-size: 70px;
+    }
+    @media screen and (min-width:$uhd) {
+        font-size: 90px;
+    }
+}
+.fab-4 {
+    color: $black;
+    @media screen and (max-width:$tablet) and (min-width:$mobile) {
+        font-size: 40px;
+    }
+    @media screen and (max-width:$qhd) and (min-width:$fhd) {
+        font-size: 50px;
+    }
+    @media screen and (min-width:$qhd) {
+        font-size: 60px;
+    }
+    @media screen and (min-width:$uhd) {
+        font-size: 80px;
+    }
+}
+.jennie-fan {
+    font-size: 10px;
+    color: $black;
+    @media screen and (min-width:$uhd) {
+        font-size: 20px;
+    }
+}
+/* ---------------- End Members Section Customization --------------- */
+
+/* ----------------- Start Discography Section Customization ---------------- */
+.albums-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    ol {
+        display: flex;
+        align-items: center;
+        overflow-y: scroll;
+        @media screen and (max-width:$mobile) {
+            display: none;
+        }
+        @media screen and (min-width:$tablet) {
+            height: 17vh;
+            font-size: 0.7rem;
+        }
+        @media screen and (min-width:$fhd) {
+            height: 20vh;
+        }
+        @media screen and (min-width:$qhd) {
+            height: 18vh;
+            font-size: 0.6rem;
+        }
+        @media screen and (min-width:$uhd) {
+            height: 22vh;
+            font-size: 1.5rem;
+        }
+    }
+    li {
+        list-style: none;
+        width: 85%;
+        @media screen and (max-width:$tablet) {
+            width: 100%;
+        }
+        @media screen and (min-width:$qhd) {
+            width: 90%;
+        }
+        @media screen and (min-width:$uhd) {
+            width: 80%;
+        }
+    }
+}
+.albums .card{
+    margin: 0 20px;
+    padding: 0 10px;
+    border-radius: 20px;
+    border: 0;
+    @media screen and (max-width:$mobile) {
+        width: 28vw;
+    }
+    @media screen and (min-width:$tablet) {
+        height: 65vh;
+    }
+    @media screen and (min-width:$qhd) {
+        height: 60vh;
+    }
+    @media screen and (min-width:$uhd) {
+        height: 70vh;
+    }
+    .card-img {
+        width: auto;
+        border-radius: 20px;
+        margin: 15px auto 0;
+        @media screen and (max-width:$mobile) {
+            height: 12vh;
+        }
+        @media screen and (min-width:$tablet) {
+            height: 20vh;
+        }
+        @media screen and (min-width:$uhd) {
+            height: 25vh;
+        }
+    }
+    h2 {   
+        @media screen and (max-width:$mobile) {
+            font-size: 0.75rem;
+            text-align: center;
+        }
+        @media screen and (min-width:$tablet) {
+            font-size: 1.1rem;
+        }
+        @media screen and (min-width:$fhd) {
+            font-size: 1.5rem;
+        }
+        @media screen and (min-width:$qhd) {
+            font-size: 1.3rem;
+        }
+        @media screen and (min-width:$uhd) {
+            font-size: 2.2rem;
+        }
+    }
+    strong {
+        @media screen and (max-width:$mobile) {
+            font-size: 0.6rem;
+        }
+        @media screen and (min-width:$tablet) {
+            font-size: 0.7rem;
+        }
+        @media screen and (min-width:$uhd) {
+            font-size: 1.4rem;
+        }
+    }
+    em {
+        @media screen and (min-width:$tablet) {
+            font-size: 0.7rem;
+        }
+        @media screen and (min-width:$uhd) {
+            font-size: 1.4rem;
+        }
+    }
+    code {
+        @media screen and (max-width:$mobile) {
+            font-size: 0.75rem;
+            text-align: center;
+        }
+        @media screen and (min-width:$uhd) {
+            font-size: 1.4rem;
+        }
+    }
+    blockquote {
+        @media screen and (min-width:$uhd) {
+            font-size: 1.4rem;
+        }
+    }
+}
+#carousel1 {
+    .card {
+        position: relative;
+    }
+    a {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+/* ----------------- End Discography Section Customization ---------------- */
+
+/* ----------------- Start Latest News Section Customization ---------------- */
+.news-post {
+    position: relative;
+    @media screen and (max-width:$mobile) {
+        width: 100vw;
+    }
+    @media screen and (min-width:$tablet) {
+        width: 100vw;
+    }
+    @media screen and (min-width:$fhd) {
+        width: 50vw;
+    }
+}
+.news-frame{
+    @media screen and (max-width:$mobile) {
+        width: 150px;
+        height: 150px;
+        margin-top: 20px !important;
+    }
+    @media screen and (min-width:$tablet) {
+        width: 200px;
+        height: 200px;
+    }  
+    @media screen and (min-width:$fhd) {
+        width: 150px;
+        height: 150px;
+    }  
+    @media screen and (min-width:$qhd) {
+        width: 150px;
+        height: 150px;
+    }  
+    @media screen and (min-width:$uhd) {
+        width: 300px;
+        height: 300px;
+    }  
+    margin-left: 20px;
+    margin-top: 5px;
+    border: 1px solid black;
+    position: relative;
+}
+.news-text {
+    @media screen and (min-width:$uhd) {
+        font-size: 2.5rem;
+    }  
+}
+.news-btn {
+    @media screen and (min-width:$uhd) {
+        font-size: 30px;
+    }  
+}
+.news-tag {
+    @media screen and (min-width:$uhd) {
+        font-size: 20px;
+    }  
+}
+.featured-post {
+    @media screen and (max-width:$tablet) {
+        display: none;
+    }
+}    
+.news-featured-frame{  
+    @media screen and (max-width:$fhd) {
+        min-height: 500px;
+    }  
+    @media screen and (min-width:$qhd) {
+        min-height: 480px;
+    }  
+    @media screen and (min-width:$uhd) {
+        min-height: 950px;
+    }  
+    margin-top: 10px;
+    border: 1px solid black;
+}    
+.news-img{  
+    max-height: 100%;  
+    max-width: 100%; 
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}
+.news-featured-img{  
+    max-height: 80%;  
+    max-width: 80%; 
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}
+.view-more:hover { 
+    background : $pink;
+}
+/* ----------------- End Latest News Section Customization ---------------- */
+
+/* -------------------- Start Recent Tweets Customization ------------------- */
+.albums .tweet {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+    @media screen and (max-width:$mobile) {
+        width: 90vw;
+    }
+    max-height: 65vh;
+}
+.controls {
+    position: relative;
+    .play {
+        position: absolute;
+        left: 50%;
+        color: $pink-dark;
+        font-size: 30px;
+    }
+    .play:active {
+        color: $pink;
+    }
+}
+/* -------------------- End Recent Tweets Customization ------------------- */
+
+.footer-text {
+    @media screen and (min-width:$uhd) {
+        font-size: 1.2rem;
+    }
+    .h5 {
+        @media screen and (min-width:$uhd) {
+            font-size: 3.5rem;
+        }
+    }  
+}
+
+/* ---------------------- Start Carousel Customization ---------------------- */
+.owl-item > div {
+    cursor: pointer; 
+    margin: 5% 0%;
+    transition: margin 0.4s ease;
+}
+.owl-item.center > div{
+    cursor: pointer;
+    margin: 0;
+}
+.albums .active {
+    opacity: 0.5;
+    transition: all 0.25s ease;
+}
+.albums .center {
+    opacity: 1;
+}
+.albums .owl-stage-outer {
+    padding: 30px 0;
+}
+.albums .owl-dots {
+    text-align: center;
+    margin-top: 10px;
+}
+.albums .owl-dots span{
+    position: relative;
+    height: 14px;
+    width: 14px;
+    border-radius: 20px;
+    display: block;
+    background-color: $pink;
+    border: 2px solid $pink-dark;
+    transition: all 0.25s ease-in-out;
+    margin: 0 4px;
+}
+.albums .owl-dots .active span{
+    background: $pink-dark;
+    box-shadow: none;
+    height: 14px;
+    width: 30px;
+    position: relative;
+    transition: all 0.25 ease;
+}
+.albums .owl-dots .active {
+    box-shadow: none;
+}
+.owl-dots .owl-dot:focus{
+    box-shadow: none!important;
+    outline: 0;
+    border: 0;
+}
+.owl-carousel .owl-nav>div {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: visible;
+}
+/* ----------------------- End Carousel Customization ----------------------- */
+
+
+/* ------------------------------ News Section ------------------------------ */
+
+.categoryDropdown {
+    width: 100%;
+    border-radius: 4px;
+    height: 35px;
+    border-color: #83ccc5;
+}
+
+.emptyErrorMsg {
+    color: red;
+    text-align: left;
+    font-size: 14px;
+}
+
+.searchForm {
+    margin: auto;
+    padding: 15px;
+    max-width: 550px;
+    align-content: center;
+}
+
+.latest-title {
+    color: black;
+    font-weight: 600;
+    font-family: monospace;
+}
