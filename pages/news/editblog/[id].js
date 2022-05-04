@@ -27,7 +27,7 @@ const EditBlog = ({blogs}) => {
     }, [])
 
     const getSingleBlog = async (id) => {
-        const singleBlog = await axios.get(`http://localhost:5000/blogs/${id}`)
+        const singleBlog = await axios.get(`http://localhost:4000/blogs/${id}`)
         if(singleBlog.status === 200) {
             setFormValue({...singleBlog.data})
         } else {
@@ -48,7 +48,7 @@ const EditBlog = ({blogs}) => {
         }
         if(title && description && category) {
 
-            const response = await axios.put(`http://localhost:5000/blogs/${blogs.id}`, formValue)
+            const response = await axios.put(`http://localhost:4000/blogs/${blogs.id}`, formValue)
             if(response.status === 200) {
                 toast.success('Blog Updated Successfully')
             } else {
@@ -153,7 +153,7 @@ const EditBlog = ({blogs}) => {
 }
 
 export const getStaticPaths = async () => {
-    const response = await fetch('http://localhost:5000/blogs/')
+    const response = await fetch('http://localhost:4000/blogs/')
     const data = await response.json()
     const paths = data.map(blog => {
         return {
@@ -169,7 +169,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
     const id = context.params.id
-    const response = await fetch('http://localhost:5000/blogs/' + id)
+    const response = await fetch('http://localhost:4000/blogs/' + id)
     const data = await response.json()
 
     return {

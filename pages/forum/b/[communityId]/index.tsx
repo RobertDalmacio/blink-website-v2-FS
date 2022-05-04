@@ -1,18 +1,20 @@
 import Layout from '../../../../components/ForumPage/LayoutForum/Layout'
-import {RecoilRoot} from 'recoil'
+import {RecoilRoot, useSetRecoilState} from 'recoil'
 import { ChakraProvider } from '@chakra-ui/react';
 import Head from 'next/head'
 import { theme } from '../../../../chakra/theme';
 import { doc, getDoc } from 'firebase/firestore';
 import { firestore } from '../../../../firebase/clientApp';
 import { GetServerSidePropsContext } from 'next';
-import {Community} from '../../../../atoms/communitiesAtom'
+import {Community, communityState} from '../../../../atoms/communitiesAtom'
 import safeJsonStringify from 'safe-json-stringify'
 import CommunityNotFound from '../../../../components/ForumPage/Community/CommunityNotFound';
 import HeaderCommunity from '../../../../components/ForumPage/Community/HeaderCommunity';
 import PageContent from '../../../../components/ForumPage/LayoutForum/PageContent';
 import CreatePostLink from '../../../../components/ForumPage/Community/CreatePostLink';
 import Posts from '../../../../components/ForumPage/Posts/Posts';
+import { useEffect } from 'react';
+import About from '../../../../components/ForumPage/Community/About';
 
 
 type CommunityPageProps = {
@@ -20,11 +22,18 @@ type CommunityPageProps = {
 };
 
 const CommunityPage:React.FC<CommunityPageProps> = ({communityData}) => {
+    const setCommunityStateValue = useSetRecoilState(communityState)
     
+    useEffect(() => {
+        setCommunityStateValue(prev => ({
+            ...prev,
+            currentCommunity: communityData,
+        }))
+    }, [])
+
     if (!communityData) {
         return (
             <div>
-            <RecoilRoot>
                 <ChakraProvider theme={theme}>
                     <Layout>
                         <Head>
@@ -35,35 +44,32 @@ const CommunityPage:React.FC<CommunityPageProps> = ({communityData}) => {
                         <CommunityNotFound />
                     </Layout>
                 </ChakraProvider>
-            </RecoilRoot>
-        </div>
+            </div>
         )
     }
 
     return (
         <div>
-            <RecoilRoot>
-                <ChakraProvider theme={theme}>
-                    <Layout>
-                        <Head>
-                            <title>BLINK | Forum | {communityData.id}</title>
-                            <meta name="description" content="Blackpink Official Fan page" />
-                            <link rel="icon" href="/logos/blink-logo.jpg" />
-                        </Head>
+            <ChakraProvider theme={theme}>
+                <Layout>
+                    <Head>
+                        <title>BLINK | Forum | {communityData.id}</title>
+                        <meta name="description" content="Blackpink Official Fan page" />
+                        <link rel="icon" href="/logos/blink-logo.jpg" />
+                    </Head>
                         
-                        <HeaderCommunity communityData={communityData} />
-                        <PageContent>
-                            <>
+                    <HeaderCommunity communityData={communityData} />
+                    <PageContent>
+                        <>
                                 
-                                <CreatePostLink />
-                                <Posts communityData={communityData} />
-                            </>
-                            <><div>RHS</div></>
-                        </PageContent>
+                            <CreatePostLink />
+                            <Posts communityData={communityData} />
+                        </>
+                        <><About communityData={communityData}/></>
+                    </PageContent>
 
-                    </Layout>
-                </ChakraProvider>
-            </RecoilRoot>
+                </Layout>
+            </ChakraProvider>
         </div>
     )
 }

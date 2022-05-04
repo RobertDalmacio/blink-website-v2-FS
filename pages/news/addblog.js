@@ -55,7 +55,7 @@ const AddBlog = () => {
             const currentDate = getDate()
 
             const updatedBlogData = {...formValue, date: currentDate}
-            const response = await axios.post('http://localhost:5000/blogs', updatedBlogData)
+            const response = await axios.post('http://localhost:4000/blogs', updatedBlogData)
             if(response.status === 201) {
                 toast.success('Blog Created Successfully')
             } else {

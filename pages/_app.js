@@ -5,16 +5,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import NavbarComp from '../components/NavbarComp'
 import FooterComp from '../components/FooterComp'
 import '../styles/style.css'
+import {RecoilRoot} from 'recoil'
 
 
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div >
-      <NavbarComp />
-        <Component {...pageProps} />
-      <FooterComp />
-    </div>
+    <RecoilRoot>
+      <div >
+        <NavbarComp />
+          <Component {...pageProps} />
+        <FooterComp />
+      </div>
+    </RecoilRoot>
   )
 }
 

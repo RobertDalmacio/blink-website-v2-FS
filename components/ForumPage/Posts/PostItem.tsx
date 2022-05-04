@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Post } from '../../../atoms/postAtom';
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsChat, BsDot } from "react-icons/bs";
-import { FaReddit } from "react-icons/fa";
 import { IoArrowDownCircleOutline, IoArrowDownCircleSharp, IoArrowRedoOutline, IoArrowUpCircleOutline, IoArrowUpCircleSharp, IoBookmarkOutline} from "react-icons/io5";
-import { Flex, Icon, Stack, Text, Image, Skeleton } from '@chakra-ui/react';
+import { Flex, Icon, Stack, Text, Image, Skeleton, Spinner, Alert, AlertIcon } from '@chakra-ui/react';
 import moment from "moment"
 
 type PostItemProps = {
@@ -12,12 +11,31 @@ type PostItemProps = {
     userIsCreator: boolean
     userVoteValue?: number
     onVote: () => {}
-    onDeletePost: () => {}
+    onDeletePost: (post: Post) => Promise<boolean>
     onSelectPost: () => void
 };
 
 const PostItem:React.FC<PostItemProps> = ({post, userIsCreator, userVoteValue, onVote, onDeletePost, onSelectPost}) => {
     const [loadingImage, setLoadingImage] = useState(true)
+    const [loadingDelete, setLoadingDelete] = useState(false)
+    const [error, setError] = useState(false)
+    
+    const handleDelete = async () => {
+        setLoadingDelete(true)
+        try {
+            const success = await onDeletePost(post)
+
+            if (!success) {
+                throw new Error('Failed to delete post.')
+            }
+
+            console.log('Post was successfully deleted.');
+        } catch (error: any) {
+            setError(error.message)
+        }
+        setLoadingDelete(false)
+    }
+
     return (
         <Flex 
             bg='brand.400' 
@@ -53,6 +71,12 @@ const PostItem:React.FC<PostItemProps> = ({post, userIsCreator, userVoteValue, o
                 />
             </Flex>
             <Flex direction='column' width='100%'>
+                {error && (
+                    <Alert status='error' bg='brand.300'>
+                        <AlertIcon color='brand.100'/>
+                        <Text mr={2} fontWeight={600}>{error}</Text>
+                    </Alert>
+                )}
                 <Stack spacing={1} p='10px'>
                     <Stack direction='row' spacing={0.6} align='center' fontSize='9pt'>
                         {/* Home Page Check */}
@@ -115,10 +139,16 @@ const PostItem:React.FC<PostItemProps> = ({post, userIsCreator, userVoteValue, o
                             borderRadius={4}
                             _hover={{bg: 'gray.200'}}
                             cursor='pointer'
-                            onClick={onDeletePost}
+                            onClick={handleDelete}
                         >
-                            <Icon as={AiOutlineDelete} mr={2} />
-                            <Text fontSize='9pt'>Delete</Text>
+                            {loadingDelete ? (
+                                <Spinner size='sm'/>
+                            ) : (
+                                <>
+                                    <Icon as={AiOutlineDelete} mr={2} />
+                                    <Text fontSize='9pt'>Delete</Text>
+                                </>
+                            )}
                         </Flex>
                     )}
                 </Flex>

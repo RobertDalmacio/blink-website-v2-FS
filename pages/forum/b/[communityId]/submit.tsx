@@ -1,5 +1,5 @@
 import Layout from '../../../../components/ForumPage/LayoutForum/Layout'
-import {RecoilRoot} from 'recoil'
+import {RecoilRoot, useRecoilValue} from 'recoil'
 import { Box, ChakraProvider, Text } from '@chakra-ui/react';
 import Head from 'next/head'
 import { theme } from '../../../../chakra/theme';
@@ -7,10 +7,12 @@ import PageContent from '../../../../components/ForumPage/LayoutForum/PageConten
 import NewPostForm from '../../../../components/ForumPage/Posts/NewPostForm';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../../firebase/clientApp';
+import { communityState } from '../../../../atoms/communitiesAtom';
 
 
 const SubmitPostPage:React.FC = () => {
     const [user] = useAuthState(auth)
+    const communityStateValue = useRecoilValue(communityState)
     return (
         <div>
             <RecoilRoot>
