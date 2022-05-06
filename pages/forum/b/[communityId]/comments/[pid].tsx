@@ -1,17 +1,43 @@
 import { ChakraProvider, theme } from '@chakra-ui/react';
+import { doc, getDoc } from 'firebase/firestore';
 import Head from 'next/head';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Post } from '../../../../../atoms/postAtom';
 import Layout from '../../../../../components/ForumPage/LayoutForum/Layout';
 import PageContent from '../../../../../components/ForumPage/LayoutForum/PageContent';
 import PostItem from '../../../../../components/ForumPage/Posts/PostItem';
-import { auth } from '../../../../../firebase/clientApp';
+import { auth, firestore } from '../../../../../firebase/clientApp';
 import usePosts from '../../../../../hooks/usePosts';
 
 
 const PostPage:React.FC = () => {
     const [user] = useAuthState(auth)
+    const router = useRouter()
     const {postStateValue, setPostStateValue, onDeletePost, onVote} = usePosts()
+
+    const fetchPost = async (postId: string) => {
+        try {
+            const postDocRef = doc(firestore, 'posts', postId)
+            const postDoc = await getDoc(postDocRef)
+            setPostStateValue(prev => ({
+                ...prev,
+                selectedPost: {id: postDoc.id, ...postDoc.data()} as Post
+            }))
+        } catch (error) {
+            console.log('fetchPost error', error);
+        }
+    }
+
+    useEffect(() => {
+        const {pid} = router.query
+
+        if (pid && !postStateValue.selectedPost) {
+            fetchPost(pid as string)
+        }
+    }, [router.query, postStateValue.selectedPost])
+
     return (
         <div>
             <ChakraProvider theme={theme}>
