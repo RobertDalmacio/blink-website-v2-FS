@@ -1,4 +1,5 @@
-import { ChakraProvider, theme } from '@chakra-ui/react';
+import { ChakraProvider} from '@chakra-ui/react';
+import { theme } from '../../../../../chakra/theme';
 import { doc, getDoc } from 'firebase/firestore';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -8,10 +9,12 @@ import { Post } from '../../../../../atoms/postAtom';
 import About from '../../../../../components/ForumPage/Community/About';
 import Layout from '../../../../../components/ForumPage/LayoutForum/Layout';
 import PageContent from '../../../../../components/ForumPage/LayoutForum/PageContent';
+import Comments from '../../../../../components/ForumPage/Posts/Comments/Comments';
 import PostItem from '../../../../../components/ForumPage/Posts/PostItem';
 import { auth, firestore } from '../../../../../firebase/clientApp';
 import useCommunityData from '../../../../../hooks/useCommunityData';
 import usePosts from '../../../../../hooks/usePosts';
+import { User } from 'firebase/auth';
 
 
 const PostPage:React.FC = () => {
@@ -63,7 +66,11 @@ const PostPage:React.FC = () => {
                                     userIsCreator={user?.uid === postStateValue.selectedPost?.creatorId}
                                 />
                             )}
-                            {/* {Comments} */}
+                            <Comments 
+                                user={user as User} 
+                                selectedPost={postStateValue.selectedPost} 
+                                communityId={postStateValue.selectedPost?.communityId as string}
+                                />
                         </>
                         <>
                             {communityStateValue.currentCommunity && (

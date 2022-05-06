@@ -8,7 +8,7 @@ export type Post = {
     creatorDisplayName: string
     title: string
     body: string
-    numberofComments: number
+    numberOfComments: number
     voteStatus: number
     currentUserVoteStatus?: {
         id: string

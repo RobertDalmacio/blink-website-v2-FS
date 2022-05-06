@@ -47,7 +47,7 @@ const PostItem:React.FC<PostItemProps> = ({post, userIsCreator, userVoteValue, o
         <Flex 
             bg='brand.400' 
             border='3px solid' 
-            borderColor={singlePostPage ? 'white' : 'black'}
+            borderColor={singlePostPage ? 'brand.400' : 'black'}
             borderRadius={singlePostPage ? '4px 4px 0px 0px' : '4px'}
             _hover={{borderColor: singlePostPage ? 'none' : 'brand.300'}}
             cursor={singlePostPage ? 'unset' : 'pointer'}
@@ -117,7 +117,7 @@ const PostItem:React.FC<PostItemProps> = ({post, userIsCreator, userVoteValue, o
                         cursor='pointer'
                     >
                         <Icon as={BsChat} mr={2} />
-                        <Text fontSize='9pt'>{post.numberofComments}</Text>
+                        <Text fontSize='9pt'>{post.numberOfComments}</Text>
                     </Flex>
                     <Flex 
                         align='center' 
