@@ -20,6 +20,7 @@ const Comments:React.FC<CommentsProps> = ({user, selectedPost, communityId}) => 
     const [comments, setComments] = useState<Comment[]>([])
     const [fetchLoading, setFetchLoading] = useState(true)
     const [createLoading, setCreateLoading] = useState(false)
+    const [loadingDeleteId, setLoadingDeleteId] = useState('')
     const setPostState = useSetRecoilState(postState)
     
     const onCreateComment = async (commentText: string) => {
@@ -70,11 +71,37 @@ const Comments:React.FC<CommentsProps> = ({user, selectedPost, communityId}) => 
         setCreateLoading(false)
     }
 
-    const onDeleteComment = async (comment: any) => {
-        // delete comment document
-        // update post numberOfComments -1
+    const onDeleteComment = async (comment: Comment) => {
+        setLoadingDeleteId(comment.id)
+        try {
+            const batch = writeBatch(firestore)
+            
+            // delete comment document
+            const commentDocRef = doc(firestore, 'comments', comment.id)
+            batch.delete(commentDocRef)
+            
+            // update post numberOfComments -1
+            const postDocRef = doc(firestore, 'posts', selectedPost?.id!)
+            batch.update(postDocRef, {
+                numberOfComments: increment(-1)
+            })
+            
+            await batch.commit()
+            
+            // update client recoil state
+            setPostState(prev => ({
+                ...prev,
+                selectedPost: {
+                    ...prev.selectedPost,
+                    numberOfComments: prev.selectedPost?.numberOfComments! - 1
+                } as Post
+            }))
+            setComments(prev => prev.filter((item) => item.id !== comment.id))
 
-        // update client recoil state
+        } catch (error) {
+            console.log('onDeleteComment error', error)
+        }
+        setLoadingDeleteId('')
     }
 
     const getPostComments = async () => {
@@ -93,7 +120,7 @@ const Comments:React.FC<CommentsProps> = ({user, selectedPost, communityId}) => 
             setComments(comments as Comment[])
 
         } catch (error) {
-            console.log('getPostComments error', error);
+            console.log('getPostComments error', error)
         }
         setFetchLoading(false)
     }
@@ -142,13 +169,15 @@ const Comments:React.FC<CommentsProps> = ({user, selectedPost, communityId}) => 
                         ) : (
                             <>
                                 {comments.map((comment) => (
-                                    <CommentItem
-                                        key={comment.id}
-                                        comment={comment} 
-                                        onDeleteComment={onDeleteComment} 
-                                        loadingDelete={false} 
-                                        userId={user.uid} 
-                                    />
+                                    <>
+                                        <CommentItem
+                                            key={comment.id}
+                                            comment={comment} 
+                                            onDeleteComment={onDeleteComment} 
+                                            loadingDelete={loadingDeleteId === comment.id} 
+                                            userId={user.uid} 
+                                        />
+                                    </>
                                 ))}
                             </>
                         )}

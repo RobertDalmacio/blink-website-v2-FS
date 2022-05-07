@@ -23,19 +23,21 @@ const CommentInput:React.FC<CommentInputProps> = ({commentText, setCommentText, 
                             {user?.email?.split("@")[0]}
                         </span>
                     </Text>
-                    <Textarea
+                    <Textarea 
                         value={commentText}
                         onChange={(event) => setCommentText(event.target.value)}
-                        placeholder="What are your thoughts?"
-                        fontSize="10pt"
+                        placeholder='What are your thoughts?'
+                        fontSize='10pt'
                         borderRadius={4}
+                        border='1px solid'
+                        borderColor='black'
+                        bg='white'
                         minHeight="160px"
-                        pb={10}
-                        _placeholder={{ color: "gray.500" }}
+                        _placeholder={{color: 'black'}}
                         _focus={{
-                        outline: "none",
-                        bg: "white",
-                        border: "1px solid black",
+                            outline: 'none',
+                            border: '1px solid',
+                            borderColor: 'brand.300'
                         }}
                     />
                     <Flex
@@ -44,7 +46,7 @@ const CommentInput:React.FC<CommentInputProps> = ({commentText, setCommentText, 
                         right={0.1}
                         bottom="1px"
                         justify="flex-end"
-                        bg="gray.100"
+                        bg="gray.200"
                         p="6px 8px"
                         borderRadius="0px 0px 4px 4px"
                     >
