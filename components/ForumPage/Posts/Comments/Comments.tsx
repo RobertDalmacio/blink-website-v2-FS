@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import { Box, Flex, SkeletonCircle, SkeletonText, Stack, Text } from '@chakra-ui/react';
 import { User } from 'firebase/auth';
-import { collection, doc, getDocs, getDocsFromCache, increment, orderBy, query, serverTimestamp, Timestamp, where, writeBatch } from 'firebase/firestore';
+import { collection, doc, getDocs, increment, orderBy, query, serverTimestamp, Timestamp, where, writeBatch } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { Post, postState } from '../../../../atoms/postAtom';
@@ -175,7 +175,7 @@ const Comments:React.FC<CommentsProps> = ({user, selectedPost, communityId}) => 
                                             comment={comment} 
                                             onDeleteComment={onDeleteComment} 
                                             loadingDelete={loadingDeleteId === comment.id} 
-                                            userId={user.uid} 
+                                            userId={user?.uid} 
                                         />
                                     </>
                                 ))}
