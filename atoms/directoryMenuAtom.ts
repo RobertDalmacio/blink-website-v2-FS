@@ -14,7 +14,7 @@ interface DirectoryMenuState {
 
 export const defaultMenuItem: DirectoryMenuItem = {
     displayText: 'Home',
-    link: '/',
+    link: '/forum',
 }
 
 export const defaultMenuState: DirectoryMenuState = {
