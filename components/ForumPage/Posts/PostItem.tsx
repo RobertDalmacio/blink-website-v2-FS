@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/link-passhref */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
 import { Post } from '../../../atoms/postAtom';
 import { AiOutlineDelete } from "react-icons/ai";
@@ -6,6 +8,7 @@ import { IoArrowDownCircleOutline, IoArrowDownCircleSharp, IoArrowRedoOutline, I
 import { Flex, Icon, Stack, Text, Image, Skeleton, Spinner, Alert, AlertIcon } from '@chakra-ui/react';
 import moment from "moment"
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 type PostItemProps = {
     post: Post
@@ -14,9 +17,10 @@ type PostItemProps = {
     onVote: (event: React.MouseEvent<SVGElement, MouseEvent>, post: Post, vote: number, communityId: string) => void
     onDeletePost: (post: Post) => Promise<boolean>
     onSelectPost?: (post: Post) => void
+    homePage?: boolean
 };
 
-const PostItem:React.FC<PostItemProps> = ({post, userIsCreator, userVoteValue, onVote, onDeletePost, onSelectPost}) => {
+const PostItem:React.FC<PostItemProps> = ({post, userIsCreator, userVoteValue, onVote, onDeletePost, onSelectPost, homePage}) => {
     const [loadingImage, setLoadingImage] = useState(true)
     const [loadingDelete, setLoadingDelete] = useState(false)
     const router = useRouter()
@@ -87,6 +91,36 @@ const PostItem:React.FC<PostItemProps> = ({post, userIsCreator, userVoteValue, o
                 <Stack spacing={1} p='10px'>
                     <Stack direction='row' spacing={0.6} align='center' fontSize='9pt'>
                         {/* Home Page Check */}
+                        {homePage && (
+                            <>
+                                {post.communityImageURL ? (
+                                    <Image 
+                                        src={post.communityImageURL}
+                                        borderRadius='full'
+                                        boxSize='30'
+                                        mr={2}
+                                    />
+                                ) : (
+                                    <Image
+                                        src='/logos/BLINK.webp'
+                                        height='30px'
+                                        position='relative' 
+                                        borderRadius='full'
+                                        mr={2}
+                                    />
+                                )}
+                                <Link href={`/forum/b/${post.communityId}`}>
+                                    <Text 
+                                        fontWeight={700} 
+                                        _hover={{textDecoration: 'underline'}}
+                                        onClick={event => event.stopPropagation()}
+                                    >
+                                        {`b/${post.communityId}`}
+                                    </Text>
+                                </Link>
+                                <Icon as={BsDot} color='gray.500' fontSize={8} />
+                            </>
+                        )}
                         <Text>
                             Posted by u/{post.creatorDisplayName} {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
                         </Text>
