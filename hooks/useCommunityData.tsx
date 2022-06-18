@@ -16,15 +16,7 @@ const useCommunityData = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
-    useEffect(()=> {
-        if (!user) {
-            setCommunityStateValue(prev => ({
-                ...prev,
-                mySnippets: []
-            }))
-        }
-        getMySnippets()
-    }, [user])
+
 
     const onJoinOrLeaveCommunity = (communityData:Community, isJoined?: boolean) => {
         if (!user) {
@@ -49,7 +41,8 @@ const useCommunityData = () => {
             const snippets = snippetDocs.docs.map(doc => ({...doc.data()}))
             setCommunityStateValue(prev => ({
                 ...prev,
-                mySnippets: snippets as CommunitySnippet[]
+                mySnippets: snippets as CommunitySnippet[],
+                snippetsFetched: true,
             }))
         } catch (error: any) {
             console.log('getMySnippets error', error)
@@ -129,7 +122,19 @@ const useCommunityData = () => {
         } catch (error) {
             console.log('getCommunityData error', error);
         }
-    } 
+    }
+    
+    useEffect(()=> {
+        if (!user) {
+            setCommunityStateValue(prev => ({
+                ...prev,
+                mySnippets: [],
+                snippetsFetched: false
+            }))
+            return;
+        }
+        getMySnippets()
+    }, [user])
 
     useEffect(() => {
         const {communityId} = router.query
@@ -138,7 +143,7 @@ const useCommunityData = () => {
             getCommunityData(communityId as string)
         }
     }, [router.query, communityStateValue.currentCommunity])
-
+    
     return {
         communityStateValue,
         onJoinOrLeaveCommunity,

@@ -17,7 +17,6 @@ const Communities:React.FC<CommunitiesProps> = () => {
     const [user] = useAuthState(auth);
     const [open, setOpen] = useState(false)
     const mySnippets = useRecoilValue(communityState).mySnippets
-
     return (
         <>
             <CreateCommunityModal 

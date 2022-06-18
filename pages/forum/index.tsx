@@ -8,20 +8,51 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, firestore } from '../../firebase/clientApp'
 import { useEffect, useState } from 'react'
 import { communityState } from '../../atoms/communitiesAtom'
-import { limit, orderBy, query, collection, getDocs } from 'firebase/firestore'
+import { limit, orderBy, query, collection, getDocs, where } from 'firebase/firestore'
 import usePosts from '../../hooks/usePosts'
 import { Post } from '../../atoms/postAtom'
 import PostLoader from '../../components/ForumPage/Posts/PostLoader'
 import CreatePostLink from '../../components/ForumPage/Community/CreatePostLink'
 import PostItem from '../../components/ForumPage/Posts/PostItem'
+import useCommunityData from '../../hooks/useCommunityData'
 
 const Forum: React.FC = () => {
     const [user, loadingUser] = useAuthState(auth)
     const [loading, setLoading] = useState(false)
     const {postStateValue ,setPostStateValue, onSelectPost, onDeletePost, onVote} = usePosts()
-    const communityStateValue = useRecoilValue(communityState)
+    const {communityStateValue} = useCommunityData()
 
     const buildUserHomeFeed = async () => {
+        setLoading(true)
+        try {
+            if (communityStateValue.mySnippets.length) {
+                //get posts from users' communities
+                const myCommunityIds = communityStateValue.mySnippets.map(snippet => snippet.communityId)
+                const postQuery = query(
+                    collection(firestore, 'posts'), 
+                    where('communityId', 'in', myCommunityIds),
+                    limit(10)
+                )
+                const postDocs = await getDocs(postQuery)
+                const posts = postDocs.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }))
+                setPostStateValue(prev => ({
+                    ...prev,
+                    posts: posts as Post[],
+                }))
+                console.log('snippets',communityStateValue.mySnippets)
+            } else {
+                buildNoUserHomeFeed()
+            }
+        } catch (error) {
+            console.log('buildUserHomeFeed error', error);
+        }
+        setLoading(false)
+    }
+    
+    const buildNoUserHomeFeed = async () => {
         setLoading(true)
         try {
             const postQuery = query(
@@ -29,7 +60,7 @@ const Forum: React.FC = () => {
                 orderBy('voteStatus', 'desc'), 
                 limit(10)
             )
-
+    
             const postDocs = await getDocs(postQuery)
             const posts = postDocs.docs.map(doc => ({id: doc.id, ...doc.data()}))
             setPostStateValue(prev => ({
@@ -42,21 +73,23 @@ const Forum: React.FC = () => {
         setLoading(false)
     }
 
-    const buildNoUserHomeFeed = () => {
-
-    }
-
     const getUserPostVotes = () => {
 
     }
-    
+
+    useEffect(() => {
+        if (communityStateValue.snippetsFetched) {
+            buildUserHomeFeed()
+            console.log('snippetsFetched True')
+        }
+    }, [communityStateValue.snippetsFetched])
+
     useEffect (() => {
-        if (!user && !loadingUser) buildUserHomeFeed(); 
+        if (!user && !loadingUser) buildNoUserHomeFeed(); 
     }, [user, loadingUser])
     
     return (
         <div>
-            <RecoilRoot>
                 <ChakraProvider theme={theme}>
                     <Layout>
                         <Head>
@@ -97,7 +130,6 @@ const Forum: React.FC = () => {
 
                     </Layout>
                 </ChakraProvider>
-            </RecoilRoot>
         </div>
     )
 } 
