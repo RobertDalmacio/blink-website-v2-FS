@@ -15,6 +15,9 @@ import PostLoader from '../../components/ForumPage/Posts/PostLoader'
 import CreatePostLink from '../../components/ForumPage/Community/CreatePostLink'
 import PostItem from '../../components/ForumPage/Posts/PostItem'
 import useCommunityData from '../../hooks/useCommunityData'
+import Recommendations from '../../components/ForumPage/Community/Recommendations'
+import Premium from '../../components/ForumPage/Community/Premium'
+
 
 const Forum: React.FC = () => {
     const [user, loadingUser] = useAuthState(auth)
@@ -146,9 +149,10 @@ const Forum: React.FC = () => {
                                     </Stack>
                                 )}
                             </>
-                            <>
-                            
-                            </>
+                            <Stack spacing={5} position="sticky" top="14px">
+                                <Recommendations />
+                                <Premium />
+                            </Stack>
                         </PageContent>
 
 
