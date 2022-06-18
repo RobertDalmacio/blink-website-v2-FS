@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import { communityState } from '../../atoms/communitiesAtom'
 import { limit, orderBy, query, collection, getDocs, where } from 'firebase/firestore'
 import usePosts from '../../hooks/usePosts'
-import { Post } from '../../atoms/postAtom'
+import { Post, PostVote } from '../../atoms/postAtom'
 import PostLoader from '../../components/ForumPage/Posts/PostLoader'
 import CreatePostLink from '../../components/ForumPage/Community/CreatePostLink'
 import PostItem from '../../components/ForumPage/Posts/PostItem'
@@ -73,8 +73,22 @@ const Forum: React.FC = () => {
         setLoading(false)
     }
 
-    const getUserPostVotes = () => {
-
+    const getUserPostVotes = async () => {
+        try {
+            const postIds = postStateValue.posts.map(post => post.id)
+            const postVotesQuery = query(
+                collection(firestore, `users/${user?.uid}/postVotes`),
+                where('postId', 'in', postIds)
+            )
+            const postVoteDocs = await getDocs(postVotesQuery)
+            const postVotes = postVoteDocs.docs.map(doc => ({id: doc.id, ...doc.data()}))
+            setPostStateValue(prev => ({
+                ...prev,
+                postVotes: postVotes as PostVote[],
+            }))
+        } catch (error) {
+            console.log('getUserPostVotes error', error)
+        }
     }
 
     useEffect(() => {
@@ -87,6 +101,16 @@ const Forum: React.FC = () => {
     useEffect (() => {
         if (!user && !loadingUser) buildNoUserHomeFeed(); 
     }, [user, loadingUser])
+
+    useEffect (() => {
+        if (user && postStateValue.posts.length) getUserPostVotes()
+        return () => {
+            setPostStateValue((prev) => ({
+                ...prev,
+                postVotes: [],
+            }))
+        }
+    }, [user, postStateValue.posts])
     
     return (
         <div>
