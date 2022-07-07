@@ -1,5 +1,5 @@
+import { Box, Skeleton, SkeletonText, Stack } from "@chakra-ui/react";
 import React from "react";
-import { Stack, Box, SkeletonText, Skeleton } from "@chakra-ui/react";
 
 const PostLoader: React.FC = () => {
     return (
@@ -15,6 +15,6 @@ const PostLoader: React.FC = () => {
                 <Skeleton mt="4" height="200px" />
             </Box>
         </Stack>
-    );
-};
+    )
+}
 export default PostLoader;

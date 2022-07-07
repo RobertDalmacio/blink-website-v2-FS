@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/link-passhref */
-import { Flex, Skeleton, SkeletonCircle, Stack, Text, Image, Box, Button } from '@chakra-ui/react';
-import { query, collection, orderBy, getDocs, limit } from 'firebase/firestore';
+import { Box, Button, Flex, Image, Skeleton, SkeletonCircle, Stack, Text } from '@chakra-ui/react';
+import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { Community } from '../../../atoms/communitiesAtom';

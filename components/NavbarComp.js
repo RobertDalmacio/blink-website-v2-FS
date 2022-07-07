@@ -1,24 +1,12 @@
-import React, {useState} from 'react';
-import {Nav, Navbar, NavbarBrand, NavItem, NavLink, Button, Container, NavbarToggler, Collapse, Modal, ModalHeader, ModalBody, TabContent, TabPane} from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
-import classnames from 'classnames'
-import LoginForm from './LoginForm'
-import SignupForm from './SignupForm'
-import Link from 'next/link'
+import Image from 'next/image';
+import { useState } from 'react';
+import { Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 
 const NavbarComp = () => {
     const [isCollapsed, setCollapsed] = useState(false)
-    const [modal, setModal] = useState(false)
-    const [activeTab, setActiveTab] = useState('1')
 
     const toggleMenuMobile = () => {
         setCollapsed(!isCollapsed)
-    }
-
-    const toggleLoginModal = () => {
-        setModal(!modal)
     }
 
     return (
@@ -56,48 +44,6 @@ const NavbarComp = () => {
                                     Forum
                                 </NavLink>
                             </NavItem>
-                            {/* <Button 
-                                type="button" 
-                                className="rounded-pill btn-rounded" 
-                                onClick={toggleLoginModal}
-                            >
-                                Login / Sign Up
-                                <span>
-                                    <FontAwesomeIcon icon={faUser} className="text-primary mt-2 w-50" />
-                                </span>
-                            </Button>
-                            <Modal isOpen={modal} toggle={toggleLoginModal} size='lg' >
-                                <ModalHeader toggle={toggleLoginModal} className='bg-secondary justify-content-center' >
-                                    <Nav pills tabs>
-                                        <NavItem >
-                                            <NavLink 
-                                                className={classnames({active: activeTab === '1'})}
-                                                onClick={()=> setActiveTab('1')}
-                                            >
-                                                Login
-                                            </NavLink>
-                                        </NavItem>
-                                        <NavItem>
-                                            <NavLink 
-                                                className={classnames({active: activeTab === '2'})}
-                                                onClick={()=> setActiveTab('2')}
-                                            >
-                                                Sign Up
-                                            </NavLink>
-                                        </NavItem>
-                                    </Nav>
-                                </ModalHeader>
-                                <ModalBody className='bg-secondary'>
-                                    <TabContent activeTab={activeTab}>
-                                        <TabPane tabId='1'>
-                                            <LoginForm />
-                                        </TabPane>
-                                        <TabPane tabId='2'>
-                                            <SignupForm />
-                                        </TabPane>
-                                    </TabContent>
-                                </ModalBody>
-                            </Modal> */}
                         </Nav>
                     </Collapse>
             </Navbar>

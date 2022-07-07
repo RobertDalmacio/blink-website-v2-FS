@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image'
-import {Card, Col, Row, UncontrolledAccordion, AccordionHeader, AccordionItem, AccordionBody} from 'reactstrap'
+import { AccordionBody, AccordionHeader, AccordionItem, Card, Col, Row, UncontrolledAccordion } from 'reactstrap'
 
 const BiographyAccordion = ({membersData}) => {
     

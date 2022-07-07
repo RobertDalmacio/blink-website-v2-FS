@@ -1,21 +1,21 @@
-import Layout from '../../../../components/ForumPage/LayoutForum/Layout'
-import {RecoilRoot, useSetRecoilState} from 'recoil'
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ChakraProvider } from '@chakra-ui/react';
-import Head from 'next/head'
-import { theme } from '../../../../chakra/theme';
 import { doc, getDoc } from 'firebase/firestore';
-import { firestore } from '../../../../firebase/clientApp';
 import { GetServerSidePropsContext } from 'next';
-import {Community, communityState} from '../../../../atoms/communitiesAtom'
-import safeJsonStringify from 'safe-json-stringify'
-import CommunityNotFound from '../../../../components/ForumPage/Community/CommunityNotFound';
-import HeaderCommunity from '../../../../components/ForumPage/Community/HeaderCommunity';
-import PageContent from '../../../../components/ForumPage/LayoutForum/PageContent';
-import CreatePostLink from '../../../../components/ForumPage/Community/CreatePostLink';
-import Posts from '../../../../components/ForumPage/Posts/Posts';
+import Head from 'next/head';
 import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import safeJsonStringify from 'safe-json-stringify';
+import { Community, communityState } from '../../../../atoms/communitiesAtom';
+import { theme } from '../../../../chakra/theme';
 import About from '../../../../components/ForumPage/Community/About';
-
+import CommunityNotFound from '../../../../components/ForumPage/Community/CommunityNotFound';
+import CreatePostLink from '../../../../components/ForumPage/Community/CreatePostLink';
+import HeaderCommunity from '../../../../components/ForumPage/Community/HeaderCommunity';
+import Layout from '../../../../components/ForumPage/LayoutForum/Layout';
+import PageContent from '../../../../components/ForumPage/LayoutForum/PageContent';
+import Posts from '../../../../components/ForumPage/Posts/Posts';
+import { firestore } from '../../../../firebase/clientApp';
 
 type CommunityPageProps = {
     communityData: Community

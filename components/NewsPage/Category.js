@@ -1,5 +1,4 @@
-import React from 'react'
-import {Card, ListGroup, ListGroupItem} from 'reactstrap'
+import { Card, ListGroup, ListGroupItem } from 'reactstrap'
 
 const Category = ({handleCategory, options, loadBlogsData}) => {
     return (

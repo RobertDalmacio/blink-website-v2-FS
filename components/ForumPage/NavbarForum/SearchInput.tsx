@@ -1,7 +1,6 @@
-import { Flex, Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react"
-import {SearchIcon} from "@chakra-ui/icons"
-import {User} from 'firebase/auth'
-
+import { SearchIcon } from "@chakra-ui/icons";
+import { Flex, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { User } from 'firebase/auth';
 
 type SearchInputProps = {
     user?: User | null
@@ -12,11 +11,9 @@ const SearchInput:React.FC<SearchInputProps> = ({user}) => {
     return (
         <Flex flexGrow={1} mr={2} align='center' maxWidth={user ? 'auto' : '1400px'}>
             <InputGroup>
-                <InputLeftElement
-                    pointerEvents='none'
-                    // eslint-disable-next-line react/no-children-prop
-                    children={<SearchIcon color='gray.400' mb={1}/>}
-                    />
+                <InputLeftElement pointerEvents='none'>
+                    <SearchIcon color='gray.400' mb={1}/>
+                </InputLeftElement>
                 <Input 
                     fontSize='10pt' 
                     placeholder='Search BLINK Forum' 

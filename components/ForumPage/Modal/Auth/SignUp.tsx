@@ -1,13 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Button, Flex, Input, Text } from '@chakra-ui/react';
+import { useEffect } from "react";
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { authModalState } from '../../../../atoms/authModalAtom';
+import { auth } from '../../../../firebase/clientApp';
+import { FIREBASE_ERRORS } from '../../../../firebase/errors';
 import React from "../../../../node_modules/react";
-import {Input, Button, Flex, Text} from '@chakra-ui/react'
-import {useSetRecoilState} from 'recoil'
-import {authModalState} from '../../../../atoms/authModalAtom'
-import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
-import {auth} from '../../../../firebase/clientApp'
-import {FIREBASE_ERRORS} from '../../../../firebase/errors'
 
 const SignUp:React.FC = () => {
     const setAuthModalState = useSetRecoilState(authModalState)
+    const [modalState, setModalState] = useRecoilState(authModalState)
     const [signUpForm, setSignUpForm] = React.useState({
         email: '',
         password: '',
@@ -39,6 +42,15 @@ const SignUp:React.FC = () => {
             [event.target.name]: event.target.value
         }))
     }
+
+    useEffect(() => {
+        if (user) {
+            setModalState((prev)=> ({
+                ...prev,
+                open: false
+            }))
+        }
+    }, [user]);
 
     return (
         <form onSubmit={onSubmit}>

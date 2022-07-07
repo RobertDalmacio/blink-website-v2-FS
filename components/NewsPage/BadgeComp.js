@@ -1,5 +1,4 @@
-import React from 'react'
-import {Badge} from 'reactstrap'
+import { Badge } from 'reactstrap'
 
 
 const BadgeComp = ({children, styleInfo}) => {

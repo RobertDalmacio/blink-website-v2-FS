@@ -1,20 +1,17 @@
-import Layout from '../../../../components/ForumPage/LayoutForum/Layout'
-import {RecoilRoot, useRecoilValue} from 'recoil'
 import { Box, ChakraProvider, Text } from '@chakra-ui/react';
-import Head from 'next/head'
+import Head from 'next/head';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { RecoilRoot } from 'recoil';
 import { theme } from '../../../../chakra/theme';
+import About from '../../../../components/ForumPage/Community/About';
+import Layout from '../../../../components/ForumPage/LayoutForum/Layout';
 import PageContent from '../../../../components/ForumPage/LayoutForum/PageContent';
 import NewPostForm from '../../../../components/ForumPage/Posts/NewPostForm';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../../firebase/clientApp';
-import { communityState } from '../../../../atoms/communitiesAtom';
 import useCommunityData from '../../../../hooks/useCommunityData';
-import About from '../../../../components/ForumPage/Community/About';
-
 
 const SubmitPostPage:React.FC = () => {
     const [user] = useAuthState(auth)
-    // const communityStateValue = useRecoilValue(communityState)
     const {communityStateValue} = useCommunityData()
     return (
         <div>

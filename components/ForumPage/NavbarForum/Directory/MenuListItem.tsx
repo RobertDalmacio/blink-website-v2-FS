@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Flex, MenuItem, Image, Text } from '@chakra-ui/react';
+import { Flex, Image, MenuItem, Text } from '@chakra-ui/react';
 import React from 'react';
 import useDirectory from '../../../../hooks/useDirectory';
 

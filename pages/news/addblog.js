@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import axios from 'axios'
-import {toast, ToastContainer} from 'react-toastify'
-import { useRouter } from 'next/router'
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 const initialState = {
     title: '',
@@ -10,6 +10,9 @@ const initialState = {
     category: '',
     imageUrl: ''
 }
+
+const CLOUDINARY_URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL
+const CLOUDINARY_UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
 
 const options = ['Music', 'Endorsements', 'ShowAppearances', 'LiveStages', 'MagazineFeatures']
 
@@ -81,9 +84,9 @@ const AddBlog = () => {
     
     const onUploadImage = (file) => {
         const formData = new FormData()
-        formData.append('file',file)
-        formData.append('upload_preset', 'jjydopx7')
-        axios.post('http://api.cloudinary.com/v1_1/dfxn71vhl/image/upload', formData).then((response) => {
+        formData.append('file', file)
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+        axios.post(CLOUDINARY_URL, formData).then((response) => {
             toast.info('Image Uploaded Successfully')
             setFormValue({...formValue, imageUrl: response.data.url})
             setImageErrMsg(null)

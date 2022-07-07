@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react'
-import Head from 'next/head'
 import axios from 'axios'
-import {Row, Col, Container, Button} from 'reactstrap'
-import {toast, ToastContainer} from 'react-toastify'
+import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import { Button, Col, Container, Row } from 'reactstrap'
 import Blogs from '../../components/NewsPage/Blogs'
-import Search from '../../components/NewsPage/Search'
 import Category from '../../components/NewsPage/Category'
 import LatestBlog from '../../components/NewsPage/LatestBlog'
 import PaginationComp from '../../components/NewsPage/Pagination'
+import Search from '../../components/NewsPage/Search'
 
 const News = () => {
     const [data,setData] = useState([])

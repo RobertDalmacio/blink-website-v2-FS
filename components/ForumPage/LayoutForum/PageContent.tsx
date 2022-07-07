@@ -1,7 +1,6 @@
 import { Flex } from '@chakra-ui/react';
-import { PropsWithChildren } from 'react';
 import { LayoutProps } from 'framer-motion';
-
+import { PropsWithChildren } from 'react';
 
 const PageContent:React.FC<PropsWithChildren<LayoutProps>> = ({children}) => {
     

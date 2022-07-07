@@ -1,22 +1,19 @@
 /* eslint-disable react/jsx-key */
-import React, {useState} from "../../../../node_modules/react"
 import { Box, Flex, Icon, MenuItem, Text } from "@chakra-ui/react";
-import CreateCommunityModal from "../../Modal/CreateCommunity/CreateCommunityModal";
-import {GrAdd} from 'react-icons/gr'
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../../../firebase/clientApp";
-import { communityState } from "../../../../atoms/communitiesAtom";
+import { GrAdd } from 'react-icons/gr';
 import { useRecoilValue } from "recoil";
+import { communityState } from "../../../../atoms/communitiesAtom";
+import { auth } from "../../../../firebase/clientApp";
+import React, { useState } from "../../../../node_modules/react";
+import CreateCommunityModal from "../../Modal/CreateCommunity/CreateCommunityModal";
 import MenuListItem from "./MenuListItem";
 
-type CommunitiesProps = {
-    
-};
-
-const Communities:React.FC<CommunitiesProps> = () => {
+const Communities:React.FC = () => {
     const [user] = useAuthState(auth);
     const [open, setOpen] = useState(false)
     const mySnippets = useRecoilValue(communityState).mySnippets
+
     return (
         <>
             <CreateCommunityModal 

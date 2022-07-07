@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import { Flex, Icon, Image, Menu, MenuButton, MenuList, Text } from "@chakra-ui/react";
-import {TiHome} from 'react-icons/ti'
+import { TiHome } from 'react-icons/ti';
 import useDirectory from '../../../../hooks/useDirectory';
 import Communities from './Communities';
-
 
 const Directory:React.FC = () => {
     const {directoryState, toggleMenuOpen} = useDirectory()

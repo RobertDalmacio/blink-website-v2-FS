@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import axios from 'axios'
-import {toast, ToastContainer} from 'react-toastify'
-import { useRouter } from 'next/router'
+/* eslint-disable react-hooks/exhaustive-deps */
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 const initialState = {
     title: '',

@@ -1,6 +1,6 @@
-import {Card, CardTitle, CardSubtitle, CardBody} from 'reactstrap'
 import Image from 'next/image'
 import Carousel from 'react-elastic-carousel'
+import { Card, CardBody, CardSubtitle, CardTitle } from 'reactstrap'
 
 const AlbumsCarousel = ({albumsData}) => {
     return (

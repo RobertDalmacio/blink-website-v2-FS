@@ -1,14 +1,10 @@
-import {Flex} from '@chakra-ui/react'
-import {useRecoilValue} from 'recoil'
-import {authModalState} from '../../../../atoms/authModalAtom'
+import { Flex } from '@chakra-ui/react';
+import { useRecoilValue } from 'recoil';
+import { authModalState } from '../../../../atoms/authModalAtom';
 import Login from './Login';
 import SignUp from './SignUp';
 
-type AuthInputsProps = {
-    
-};
-
-const AuthInputs:React.FC<AuthInputsProps> = () => {
+const AuthInputs:React.FC = () => {
     const modalState = useRecoilValue(authModalState)
 
 

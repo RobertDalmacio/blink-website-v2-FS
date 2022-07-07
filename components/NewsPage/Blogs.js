@@ -1,9 +1,8 @@
-import React from 'react'
-import {Col, Row, Card, CardTitle, CardBody, CardImg, Button} from 'reactstrap'
-import {FaTrash, FaEdit} from 'react-icons/fa'
+import { FaEdit, FaTrash } from 'react-icons/fa'
+import { Button, Card, CardBody, CardImg, CardTitle, Col, Row } from 'reactstrap'
 import BadgeComp from '../NewsPage/BadgeComp'
 
-const Blogs = ({title,category, description, imageUrl, id, excerpt, handleDelete}) => {
+const Blogs = ({title,category, imageUrl, id, handleDelete}) => {
     return (
         <Col>
             <Card style={{backgroundColor: '#FFB8C1', width:'1080px'}} className="mb-2 text-center">

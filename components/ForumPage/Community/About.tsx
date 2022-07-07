@@ -1,9 +1,8 @@
-import { Box, Flex, Text, Icon, Stack, Divider, Button, Image, Spinner } from '@chakra-ui/react';
+import { Box, Button, Divider, Flex, Icon, Image, Spinner, Stack, Text } from '@chakra-ui/react';
 import { doc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import moment from 'moment';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
@@ -14,13 +13,13 @@ import { auth, firestore, storage } from '../../../firebase/clientApp';
 import useSelectFile from '../../../hooks/useSelectFile';
 
 type AboutProps = {
-    communityData: Community;
-};
+    communityData: Community
+}
 
 const About:React.FC<AboutProps> = ({communityData}) => {
     const [user] = useAuthState(auth)
     const selectedFileRef = useRef<HTMLInputElement>()
-    const {selectedFile, setSelectedFile, onSelectFile} = useSelectFile()
+    const {selectedFile, onSelectFile} = useSelectFile()
     const [uploadingImage, setUploadingImage] = useState(false)
     const setCommunityStateValue = useSetRecoilState(communityState)
 

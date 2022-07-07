@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import {deleteObject, ref} from 'firebase/storage'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { Post, postState, PostVote } from '../atoms/postAtom';
-import {auth, firestore, storage} from '../firebase/clientApp'
+/* eslint-disable react-hooks/exhaustive-deps */
 import { collection, deleteDoc, doc, getDocs, query, where, writeBatch } from 'firebase/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { communityState } from '../atoms/communitiesAtom';
-import { authModalState } from '../atoms/authModalAtom';
+import { deleteObject, ref } from 'firebase/storage';
 import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { authModalState } from '../atoms/authModalAtom';
+import { communityState } from '../atoms/communitiesAtom';
+import { Post, postState, PostVote } from '../atoms/postAtom';
+import { auth, firestore, storage } from '../firebase/clientApp';
 
 const usePosts = () => {
     const [user] = useAuthState(auth)
@@ -26,14 +27,13 @@ const usePosts = () => {
 
         const {voteStatus} = post
         const existingVote = postStateValue.postVotes.find(vote => vote.postId === post.id)
-        console.log('postStateValue: ', postStateValue);
         try {
-            let voteChange = vote
             const batch = writeBatch(firestore)
-
+            
             const updatedPost = {...post}
             const updatedPosts = [...postStateValue.posts]
             let updatedPostVotes = [...postStateValue.postVotes]
+            let voteChange = vote
             
             // New Vote
             if (!existingVote) {
@@ -59,21 +59,19 @@ const usePosts = () => {
                 // Removing their vote (up => neutral OR down => neutral)
                 if (existingVote.voteValue === vote) {
                     // add/subtract 1 to/from post.voteStatus
-                    voteChange *= -1
                     updatedPost.voteStatus = voteStatus - vote
                     updatedPostVotes = updatedPostVotes.filter(vote => vote.id !== existingVote.id)
-                    console.log('vote:', vote);
+                    voteChange *= -1
                     
                     //delete the postVote document
                     batch.delete(postVoteRef)
-
                 }
                 // Flipping their vote (up => down OR down => up)
                 else {
                     // add/subtract 2 to from post.voteStatus
                     updatedPost.voteStatus = voteStatus + 2 * vote
+                    
                     const voteIdx = postStateValue.postVotes.findIndex(vote => vote.id === existingVote.id)
-                    console.log('vote:', vote);
                     
                     updatedPostVotes[voteIdx]= {
                         ...existingVote, 
@@ -89,31 +87,27 @@ const usePosts = () => {
                 }   
             }
 
-            let updatedState = {...postStateValue, postVotes: updatedPostVotes}
-
+            //update our post document
+            const postRef = doc(firestore, 'posts', post.id!)
+            batch.update(postRef, {voteStatus: voteStatus + voteChange})
+            
+            await batch.commit()
+            
             //update state with updated values
             const postIdx = postStateValue.posts.findIndex(item => item.id === post.id)
-            console.log('postIdx:',postIdx)
             updatedPosts[postIdx!] = updatedPost
-            console.log('updatedPost: ', updatedPost);
             setPostStateValue(prev => ({
                 ...prev,
                 posts: updatedPosts,
                 postVotes: updatedPostVotes
             }))
-            
+
             if (postStateValue.selectedPost) {
                 setPostStateValue(prev => ({
                     ...prev,
                     selectedPost: updatedPost
                 }))
             }
-
-            //update our post document
-            const postRef = doc(firestore, 'posts', post.id!)
-            batch.update(postRef, {voteStatus: voteStatus + voteChange})
-            
-            await batch.commit()
             
         } catch (error) {
             console.log('onVote error', error)

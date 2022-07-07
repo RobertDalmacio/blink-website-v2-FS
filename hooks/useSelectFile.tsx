@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React, { useState } from 'react'
 
 const useSelectFile = () => {
     const [selectedFile, setSelectedFile] = useState<string>()

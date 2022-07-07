@@ -1,23 +1,21 @@
-import Head from 'next/head'
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ChakraProvider, Stack } from '@chakra-ui/react'
-import {theme} from '../../chakra/theme'
-import Layout from '../../components/ForumPage/LayoutForum/Layout'
-import {RecoilRoot, useRecoilValue} from 'recoil'
-import PageContent from '../../components/ForumPage/LayoutForum/PageContent'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth, firestore } from '../../firebase/clientApp'
+import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore'
+import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { communityState } from '../../atoms/communitiesAtom'
-import { limit, orderBy, query, collection, getDocs, where } from 'firebase/firestore'
-import usePosts from '../../hooks/usePosts'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { Post, PostVote } from '../../atoms/postAtom'
-import PostLoader from '../../components/ForumPage/Posts/PostLoader'
+import { theme } from '../../chakra/theme'
 import CreatePostLink from '../../components/ForumPage/Community/CreatePostLink'
-import PostItem from '../../components/ForumPage/Posts/PostItem'
-import useCommunityData from '../../hooks/useCommunityData'
-import Recommendations from '../../components/ForumPage/Community/Recommendations'
 import Premium from '../../components/ForumPage/Community/Premium'
-
+import Recommendations from '../../components/ForumPage/Community/Recommendations'
+import Layout from '../../components/ForumPage/LayoutForum/Layout'
+import PageContent from '../../components/ForumPage/LayoutForum/PageContent'
+import PostItem from '../../components/ForumPage/Posts/PostItem'
+import PostLoader from '../../components/ForumPage/Posts/PostLoader'
+import { auth, firestore } from '../../firebase/clientApp'
+import useCommunityData from '../../hooks/useCommunityData'
+import usePosts from '../../hooks/usePosts'
 
 const Forum: React.FC = () => {
     const [user, loadingUser] = useAuthState(auth)
@@ -45,7 +43,6 @@ const Forum: React.FC = () => {
                     ...prev,
                     posts: posts as Post[],
                 }))
-                console.log('snippets',communityStateValue.mySnippets)
             } else {
                 buildNoUserHomeFeed()
             }
@@ -97,7 +94,6 @@ const Forum: React.FC = () => {
     useEffect(() => {
         if (communityStateValue.snippetsFetched) {
             buildUserHomeFeed()
-            console.log('snippetsFetched True')
         }
     }, [communityStateValue.snippetsFetched])
 

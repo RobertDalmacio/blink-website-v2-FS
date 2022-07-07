@@ -4,7 +4,6 @@ export type DirectoryMenuItem = {
     displayText: string
     link: string
     imageURL?: string
-
 }
 
 interface DirectoryMenuState {

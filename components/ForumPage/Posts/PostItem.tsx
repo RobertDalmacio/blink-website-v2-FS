@@ -1,14 +1,14 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable jsx-a11y/alt-text */
+import { Alert, AlertIcon, Flex, Icon, Image, Skeleton, Spinner, Stack, Text } from '@chakra-ui/react';
+import moment from "moment";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Post } from '../../../atoms/postAtom';
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsChat, BsDot } from "react-icons/bs";
-import { IoArrowDownCircleOutline, IoArrowDownCircleSharp, IoArrowRedoOutline, IoArrowUpCircleOutline, IoArrowUpCircleSharp, IoBookmarkOutline} from "react-icons/io5";
-import { Flex, Icon, Stack, Text, Image, Skeleton, Spinner, Alert, AlertIcon } from '@chakra-ui/react';
-import moment from "moment"
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { IoArrowDownCircleOutline, IoArrowDownCircleSharp, IoArrowRedoOutline, IoArrowUpCircleOutline, IoArrowUpCircleSharp, IoBookmarkOutline } from "react-icons/io5";
+import { Post } from '../../../atoms/postAtom';
 
 type PostItemProps = {
     post: Post
@@ -122,7 +122,7 @@ const PostItem:React.FC<PostItemProps> = ({post, userIsCreator, userVoteValue, o
                             </>
                         )}
                         <Text>
-                            Posted by u/{post.creatorDisplayName} {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
+                            Posted by u/{post.userDisplayText} {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
                         </Text>
                     </Stack>
                     <Text fontSize='12pt' fontWeight={600}>{post.title}</Text>

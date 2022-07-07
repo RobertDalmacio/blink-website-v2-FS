@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import {Container, Row} from 'reactstrap'
-import {BiographyData} from '../data/BiographyData'
+import { Container, Row } from 'reactstrap'
 import BiographyAccordion from '../components/BiographyAccordion'
+import { BiographyData } from '../data/BiographyData'
 
 const Members = () => {
     const membersData = BiographyData

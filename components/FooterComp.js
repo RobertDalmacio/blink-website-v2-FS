@@ -1,7 +1,5 @@
-import { Col, Button, Input, Form, FormGroup, Container, Row, RowGroup } from 'reactstrap'
 import Image from 'next/image'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { Button, Col, Container, Form, FormGroup, Input, Row } from 'reactstrap'
 
 const FooterComp = () => {
     return (

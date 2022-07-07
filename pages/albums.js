@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import {Container, Row} from 'reactstrap'
-import { AlbumsData } from '../data/AlbumsData'
+import { Container, Row } from 'reactstrap'
 import AlbumsCarousel from '../components/AlbumsCarousel'
+import { AlbumsData } from '../data/AlbumsData'
 
 const Albums = () => {
     const albumsData = AlbumsData

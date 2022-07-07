@@ -1,17 +1,14 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList, Icon, Flex, MenuDivider, Text } from "@chakra-ui/react";
-import {ChevronDownIcon} from '@chakra-ui/icons'
-import {User, signOut} from 'firebase/auth'
-import {auth} from '../../../../firebase/clientApp'
-import {FaUserAlt} from 'react-icons/fa'
-import {VscAccount} from 'react-icons/vsc'
-import {IoSparkles} from 'react-icons/io5'
-import {CgProfile} from 'react-icons/cg'
-import {MdOutlineLogin} from 'react-icons/md'
-import {useResetRecoilState, useSetRecoilState} from 'recoil'
-import {authModalState} from '../../../../atoms/authModalAtom'
-import { communityState } from "../../../../atoms/communitiesAtom";
-
-
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import { Flex, Icon, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import { signOut, User } from 'firebase/auth';
+import { CgProfile } from 'react-icons/cg';
+import { FaUserAlt } from 'react-icons/fa';
+import { IoSparkles } from 'react-icons/io5';
+import { MdOutlineLogin } from 'react-icons/md';
+import { VscAccount } from 'react-icons/vsc';
+import { useSetRecoilState } from 'recoil';
+import { authModalState } from '../../../../atoms/authModalAtom';
+import { auth } from '../../../../firebase/clientApp';
 
 type UserMenuProps = {
     user?: User | null

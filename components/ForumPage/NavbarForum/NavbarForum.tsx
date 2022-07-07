@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Flex, Image } from "@chakra-ui/react";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { defaultMenuItem } from "../../../atoms/directoryMenuAtom";
+import { auth } from '../../../firebase/clientApp';
+import useDirectory from "../../../hooks/useDirectory";
+import Directory from "./Directory/Directory";
 import RightContent from "./RightContent/RightContent";
 import SearchInput from "./SearchInput";
-import {useAuthState} from 'react-firebase-hooks/auth';
-import {auth} from '../../../firebase/clientApp'
-import Directory from "./Directory/Directory";
-import useDirectory from "../../../hooks/useDirectory";
-import { defaultMenuItem } from "../../../atoms/directoryMenuAtom";
 
 const NavbarForum:React.FC = () => {
-    const [user, loading, error] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     const {onSelectMenuItem} = useDirectory()
 
     return (

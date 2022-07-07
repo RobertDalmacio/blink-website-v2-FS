@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Flex, Box, Image, Stack, Text, Icon, Spinner } from '@chakra-ui/react';
+import { Box, Flex, Icon, Image, Spinner, Stack, Text } from '@chakra-ui/react';
 import { Timestamp } from 'firebase/firestore';
 import moment from 'moment';
 import React from 'react';
@@ -23,7 +23,6 @@ type CommentItemProps = {
     userId: string
 };
 
-
 const CommentItem:React.FC<CommentItemProps> = ({comment, onDeleteComment, loadingDelete, userId}) => {
     
     return (
@@ -31,9 +30,9 @@ const CommentItem:React.FC<CommentItemProps> = ({comment, onDeleteComment, loadi
             <Box mr={2}>
                 <Image
                     src='/logos/BLINK.webp'
-                    height='40px'
+                    height='35px'
                     position='relative' 
-                    top={-3}
+                    top={-1}
                     border='3px solid white'
                     borderRadius='50%'
                 />

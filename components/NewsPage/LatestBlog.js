@@ -1,5 +1,4 @@
-import React from 'react'
-import {Card, Row, Col, CardBody, CardImg} from 'reactstrap'
+import { Card, CardBody, CardImg, Col, Row } from 'reactstrap'
 
 const LatestBlog = ({imageUrl, title, id}) => {
     return (

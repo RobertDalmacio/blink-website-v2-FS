@@ -1,17 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Button, Flex, Input, Text } from '@chakra-ui/react';
+import { useEffect } from "react";
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSetRecoilState } from 'recoil';
+import { authModalState } from '../../../../atoms/authModalAtom';
+import { auth } from '../../../../firebase/clientApp';
+import { FIREBASE_ERRORS } from '../../../../firebase/errors';
 import React from "../../../../node_modules/react";
-import {Input, Button, Flex, Text} from '@chakra-ui/react'
-import {useSetRecoilState} from 'recoil'
-import {authModalState} from '../../../../atoms/authModalAtom'
-import {useSignInWithEmailAndPassword} from 'react-firebase-hooks/auth'
-import {auth} from '../../../../firebase/clientApp'
-import {FIREBASE_ERRORS} from '../../../../firebase/errors'
 
-type LoginProps = {
-    
-};
-
-const Login:React.FC<LoginProps> = () => {
+const Login:React.FC = () => {
     const setAuthModalState = useSetRecoilState(authModalState)
+    const setModalState = useSetRecoilState(authModalState)
     const [loginForm, setLoginForm] = React.useState({
         email: '',
         password: ''
@@ -35,6 +34,15 @@ const Login:React.FC<LoginProps> = () => {
             [event.target.name]: event.target.value
         }))
     }
+
+    useEffect(() => {
+        if (user) {
+            setModalState((prev)=> ({
+                ...prev,
+                open: false
+            }))
+        }
+    }, [user]);
 
     return (
         <form onSubmit={onSubmit}>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-key */
 import { Box, Flex, SkeletonCircle, SkeletonText, Stack, Text } from '@chakra-ui/react';
 import { User } from 'firebase/auth';
@@ -7,7 +8,7 @@ import { useSetRecoilState } from 'recoil';
 import { Post, postState } from '../../../../atoms/postAtom';
 import { firestore } from '../../../../firebase/clientApp';
 import CommentInput from './CommentInput';
-import CommentItem, {Comment} from './CommentItem';
+import CommentItem, { Comment } from './CommentItem';
 
 type CommentsProps = {
     user: User

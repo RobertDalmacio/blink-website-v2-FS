@@ -1,5 +1,4 @@
-import React from 'react'
-import {Pagination, PaginationItem, PaginationLink, Button} from 'reactstrap'
+import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap'
 
 const PaginationComp = ({currentPage, pageLimit, loadBlogsData, data, totalBlog}) => {
     

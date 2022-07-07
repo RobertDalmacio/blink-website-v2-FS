@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react'
-import {Col, Row, Card, CardTitle, CardBody, CardImg, Container, Button} from 'reactstrap'
-import {FaCalendarAlt} from 'react-icons/fa'
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @next/next/no-img-element */
 import axios from 'axios'
-import BadgeComp from '../../../components/NewsPage/BadgeComp'
+import { useEffect, useState } from 'react'
+import { FaCalendarAlt } from 'react-icons/fa'
 import { toast, ToastContainer } from 'react-toastify'
+import { Button, Card, CardBody, CardImg, CardTitle, Col, Container, Row } from 'reactstrap'
+import BadgeComp from '../../../components/NewsPage/BadgeComp'
 
 const Blog = ({blogs}) => {
     const [blog, setBlog] = useState()
@@ -24,14 +26,6 @@ const Blog = ({blogs}) => {
             toast.error('Something went wrong')
         }
     }
-
-    // excerpt for description function
-    // const excerpt = (str) => {
-    //     if(str.length > 50) {
-    //         str = str.substring(0, 50) + "..."
-    //     }
-    //     return str
-    // }
 
     const styleInfo = {
         display: 'inline',
@@ -90,7 +84,6 @@ const Blog = ({blogs}) => {
                                     </a>
                                     <CardBody style={{backgroundColor: '#f34279', height: '90px'}}>
                                         <CardTitle><h5>{item.title}</h5></CardTitle>
-                                        {/* <CardText>{excerpt(item.description)}</CardText> */}
                                     </CardBody>
                                 </Card>
                             </Col>

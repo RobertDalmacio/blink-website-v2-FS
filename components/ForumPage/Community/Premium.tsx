@@ -1,5 +1,5 @@
+import { Button, Flex, Icon, Stack, Text } from "@chakra-ui/react";
 import React from "react";
-import { Flex, Icon, Text, Stack, Button } from "@chakra-ui/react";
 import { RiVipCrown2Fill } from "react-icons/ri";
 
 const Premium: React.FC = () => {

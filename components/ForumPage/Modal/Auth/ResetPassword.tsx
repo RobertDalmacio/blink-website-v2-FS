@@ -1,12 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from 'react'
 import { Button, Flex, Icon, Input, Text } from "@chakra-ui/react";
+import React, { useState } from 'react';
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import { BsDot } from "react-icons/bs";
 import { Si1Password } from "react-icons/si";
+import { useSetRecoilState } from "recoil";
 import { authModalState } from "../../../../atoms/authModalAtom";
 import { auth } from "../../../../firebase/clientApp";
-import { useSetRecoilState } from "recoil";
 
 const ResetPassword: React.FC = () => {
     const setAuthModalState = useSetRecoilState(authModalState);
@@ -32,7 +32,7 @@ const ResetPassword: React.FC = () => {
             ) : (
                 <>
                     <Text fontSize="sm" textAlign="center" mb={2}>
-                        Enter the email associated with your account and we'll send you a reset link.
+                        {`Enter the email associated with your account and we'll send you a reset link.`}
                     </Text>
                     <form onSubmit={onSubmit} style={{ width: "100%" }}>
                         <Input

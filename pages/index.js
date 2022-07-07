@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import {Container, Row, Col} from 'reactstrap'
 import Image from 'next/image'
+import { Col, Container, Row } from 'reactstrap'
 
 export default function Home() {
   return (

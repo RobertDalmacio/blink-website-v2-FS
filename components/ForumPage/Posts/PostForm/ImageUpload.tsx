@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Button, Flex, Image, Stack } from '@chakra-ui/react';
-import React, { Ref } from 'react';
+import React from 'react';
 
 type ImageUploadProps = {
     selectFileRef: React.RefObject<HTMLInputElement>

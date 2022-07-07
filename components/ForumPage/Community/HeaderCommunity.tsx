@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Box, Button, Flex, Icon, Image, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Community } from '../../../atoms/communitiesAtom';
-import useCommunityData from '../../../hooks/useCommunityData'
+import useCommunityData from '../../../hooks/useCommunityData';
 
 type HeaderCommunityProps = {
     communityData: Community
