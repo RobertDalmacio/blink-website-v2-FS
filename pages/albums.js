@@ -14,7 +14,7 @@ const Albums = () => {
                 <link rel="icon" href="/logos/blink-logo.jpg" />
             </Head>
             
-            <Container fluid className='section d-flex flex-column min-vh-100'>
+            <Container fluid className='section d-flex flex-column min-vh-90'>
                 <Row className='text-center section-title'>
                     <h1 className="text-secondary">Discography</h1>
                 </Row>
