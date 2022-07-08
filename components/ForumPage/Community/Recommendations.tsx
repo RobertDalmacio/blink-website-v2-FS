@@ -72,12 +72,12 @@ const Recommendations:React.FC = () => {
                             const isJoined = !!communityStateValue.mySnippets.find(snippet => snippet.communityId === item.id)
                             return (
                                 <Link key={item.id} href={`/forum/b/${item.id}`}>
-                                    <Flex position='relative' align="center" fontSize='10pt' borderBottom='1px solid' borderColor='black' p='10px 12px'>
+                                    <Flex position='relative' align="center" fontSize='10pt' borderBottom='1px solid' borderColor='black' p='10px 12px' fontWeight={600}>
                                         <Flex width='80%' align='center'>
                                             <Flex width='15%'>
                                                 <Text>{index + 1}</Text>
                                             </Flex>
-                                            <Flex align='center' width='80%'>
+                                            <Flex align='center' width='80%' cursor='pointer'>
                                                 {item.imageURL ? (
                                                     <Image src={item.imageURL} borderRadius='full' boxSize='30px' mr={2} />
                                                 ) : (
