@@ -13,8 +13,10 @@ const NavbarComp = () => {
         <Container fluid>
             <Navbar dark expand='lg' className='menu'>
                 <NavbarBrand>
-                    <Image src="/logos/BP_LOGO_x150.png" alt="BlackPink Logo" width={240} height={75}/>
-                    <h4 className="px-4 text-secondary">Official Fan Page</h4>
+                    <NavLink href='/'>
+                        <Image src="/logos/BP_LOGO_x150.png" alt="BlackPink Logo" width={240} height={75}/>
+                        <h4 className="px-4 text-secondary">Official Fan Page</h4>
+                    </NavLink>
                 </NavbarBrand>
                 <NavbarToggler onClick={toggleMenuMobile}/>
                     <Collapse navbar className="navbar-collapse justify-content-end" isOpen={isCollapsed}>

@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Image from 'next/image'
 import { Button, Col, Container, Form, FormGroup, Input, Row } from 'reactstrap'
 
 const FooterComp = () => {
+    
     return (
         <footer className="mt-auto">
             <div className="bg-secondary mt-5 pt-5">
@@ -36,13 +38,14 @@ const FooterComp = () => {
                         </Col>
 
                         <Col md='6' lg='4' className='mb-5 mb-lg-0 text-center'>
-                            <h5 className="fw-bold text-uppercase text-decoration-underline mb-3">Latest News</h5>
+                            <h5 className="fw-bold text-uppercase text-decoration-underline mb-3">Forum Pages</h5>
                             <ul className="list-unstyled">
-                                <li><a className="text-decoration-none" href="#">Music</a></li>
-                                <li><a className="text-decoration-none" href="#">CFs & Endorsements</a></li>
-                                <li><a className="text-decoration-none" href="#">TV, Radio & Online Shows</a></li>
-                                <li><a className="text-decoration-none" href="#">Live Stages</a></li>
-                                <li><a className="text-decoration-none" href="#">Magazine Features</a></li>
+                                <li><a className="text-decoration-none" href="/forum/b/BLACKPINK">BLACKPINK</a></li>
+                                <li><a className="text-decoration-none" href="/forum/b/Jisoo">Jisoo</a></li>
+                                <li><a className="text-decoration-none" href="/forum/b/Jennie">Jennie</a></li>
+                                <li><a className="text-decoration-none" href="/forum/b/Lisa">Lisa</a></li>
+                                <li><a className="text-decoration-none" href="/forum/b/Rose">Rosé</a></li>
+                                <li><a className="text-decoration-none" href="/forum/b/BLINK">BLINK</a></li>
                             </ul>
                         </Col>
 
