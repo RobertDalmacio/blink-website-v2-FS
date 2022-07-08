@@ -33,7 +33,7 @@ const NavbarComp = () => {
                             </NavItem>
                             <NavItem>
                                 <NavLink className="text-secondary" href="/albums">
-                                    Discography
+                                    Albums
                                 </NavLink>
                             </NavItem>        
                             <NavItem>
