@@ -126,7 +126,7 @@ full-stack website are:
 > clicking the icon will remove the post or comment from their perspective
 > database collection.
 
-![Single Post Screenshots](tables/singlePost.PNG)
+![Single Post Screenshots](public/tables/singlePost.PNG)
 
 ---
 
