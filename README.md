@@ -28,7 +28,7 @@ full-stack website are:
 > And all the icons are clickable, for example clicking the Youtube icon will
 > take you to Blackpink’s Youtube page.
 
-![HomePage Screenshots](tables/homepage.png)
+![HomePage Screenshots](public/tables/homepage.png)
 
 ---
 
@@ -38,7 +38,7 @@ full-stack website are:
 > this page are meant to stay static, I used a static database approach and
 > stored all the data in a static array file called ‘BiographyData’.
 
-![Members Screenshots](tables/members.png)
+![Members Screenshots](public/tables/members.png)
 
 ---
 
@@ -47,7 +47,7 @@ full-stack website are:
 > its ease of use and excellent documentation. And similarly to the ‘Members’
 > page, I stored all the data in a static array file called ‘AlbumsData’.
 
-![Albums Screenshots](tables/albums.png)
+![Albums Screenshots](public/tables/albums.png)
 
 ---
 
@@ -61,7 +61,7 @@ full-stack website are:
 > the cards under the ‘Latest Post’ section will navigate the user to the full
 > post view.
 
-![News Screenshots](tables/news.png)
+![News Screenshots](public/tables/news.png)
 
 ---
 
@@ -76,7 +76,7 @@ full-stack website are:
 > an alert message will be prompted in the browser asking the user to confirm
 > and if ‘ok’ is selected, the selected post will be deleted from the server.
 
-![News Forms Screenshots](tables/newsForm.png)
+![News Forms Screenshots](public/tables/newsForm.png)
 
 ---
 
@@ -93,7 +93,7 @@ full-stack website are:
 > dropdown menu to the left of the search bar will display all the communities
 > the user is moderating and subscribed to.
 
-![Forum HomePage Screenshots](tables/forumHomepage.png)
+![Forum HomePage Screenshots](public/tables/forumHomepage.png)
 
 ---
 
@@ -105,7 +105,7 @@ full-stack website are:
 > community. Also if the user is the community creator, the user can change the
 > community profile image under the ‘About Community’ section.
 
-![Community HomePage Screenshots](tables/communityHomepage.png)
+![Community HomePage Screenshots](public/tables/communityHomepage.png)
 
 ---
 
@@ -114,7 +114,7 @@ full-stack website are:
 > title with an optional text body and/or image. The uploaded image will be
 > stored on the Firebase storage I have set up for this project.
 
-![Post Form Screenshots](tables/post.png)
+![Post Form Screenshots](public/tables/post.png)
 
 ---
 
@@ -126,7 +126,7 @@ full-stack website are:
 > clicking the icon will remove the post or comment from their perspective
 > database collection.
 
-![Single Post Screenshots](tables/singlePost.png)
+![Single Post Screenshots](public/tables/singlePost.png)
 
 ---
 
