@@ -1,7 +1,6 @@
 import { Box, ChakraProvider, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { RecoilRoot } from 'recoil';
 import { theme } from '../../../../chakra/theme';
 import About from '../../../../components/ForumPage/Community/About';
 import Layout from '../../../../components/ForumPage/LayoutForum/Layout';
@@ -15,7 +14,6 @@ const SubmitPostPage:React.FC = () => {
     const {communityStateValue} = useCommunityData()
     return (
         <div>
-            <RecoilRoot>
                 <ChakraProvider theme={theme}>
                     <Layout>
                         <Head>
@@ -49,7 +47,6 @@ const SubmitPostPage:React.FC = () => {
                         </PageContent>
                     </Layout>
                 </ChakraProvider>
-            </RecoilRoot>
         </div>
     )
 }
