@@ -28,6 +28,7 @@
     "firebase-admin": "^11.0.1",
     "firebase-functions": "^3.22.0",
     "framer-motion": "^6.3.1",
+    "json-server": "^0.17.0",
     "moment": "^2.29.3",
     "next": "^12.1.0",
     "node-sass": "^7.0.1",
