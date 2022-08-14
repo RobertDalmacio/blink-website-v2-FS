@@ -16,8 +16,8 @@ const Blog = ({blogs}) => {
     }, [])
     
     const getSingleBlog = async () => {
-        const response = await axios.get(`http://localhost:4000/blogs/${blogs.id}`)
-        const relatedPostData = await axios.get(`http://localhost:4000/blogs?category=${response.data.category}&_start=0&_end=3`)
+        const response = await axios.get(`https://blink-website-v2.herokuapp.com/blogs/${blogs.id}`)
+        const relatedPostData = await axios.get(`https://blink-website-v2.herokuapp.com/blogs?category=${response.data.category}&_start=0&_end=3`)
         if(response.status === 200 || relatedPostData.status === 200) {
             console.log(response.data)
             setBlog(response.data)
@@ -97,7 +97,7 @@ const Blog = ({blogs}) => {
 }
 
 export const getStaticPaths = async () => {
-    const response = await fetch('http://localhost:4000/blogs/')
+    const response = await fetch('https://blink-website-v2.herokuapp.com/blogs/')
     const data = await response.json()
 
     const paths = data.map(blog => {
@@ -114,7 +114,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
     const id = context.params.id
-    const response = await fetch('http://localhost:4000/blogs/' + id)
+    const response = await fetch('https://blink-website-v2.herokuapp.com/blogs/' + id)
     const data = await response.json()
 
     return {

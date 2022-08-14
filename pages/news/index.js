@@ -26,10 +26,10 @@ const News = () => {
     const options = ['Music', 'Endorsements', 'ShowAppearances', 'LiveStages', 'MagazineFeatures']
 
     const loadBlogsData = async (start, end, increase, operation) => {
-        const totalBlog = await axios.get(`http://localhost:4000/blogs`)
+        const totalBlog = await axios.get(`https://blink-website-v2.herokuapp.com/blogs`)
         setTotalBlog(totalBlog.data.length)
     
-        const response = await axios.get(`http://localhost:4000/blogs?_start=${start}&_end=${end}`)
+        const response = await axios.get(`https://blink-website-v2.herokuapp.com/blogs?_start=${start}&_end=${end}`)
         if(response.status === 200) {
             setData(response.data)
             if (operation) {
@@ -44,7 +44,7 @@ const News = () => {
 
     const handleDelete = async (id) => {
         if(window.confirm('Are you sure you want to delete that blog?')) {
-            const response = await axios.delete(`http://localhost:4000/blogs/${id}`)
+            const response = await axios.delete(`https://blink-website-v2.herokuapp.com/blogs/${id}`)
                 if(response.status === 200) {
                     toast.success('Blog Deleted Successfully')
                     loadBlogsData(0, 5, 0, 'delete')
@@ -70,7 +70,7 @@ const News = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault()
-        const response = await axios.get(`http://localhost:4000/blogs?q=${searchValue}`)
+        const response = await axios.get(`https://blink-website-v2.herokuapp.com/blogs?q=${searchValue}`)
         if (response.status === 200) {
             setData(response.data)
         } else {
@@ -79,7 +79,7 @@ const News = () => {
     }
 
     const handleCategory = async (category) => {
-        const response = await axios.get(`http://localhost:4000/blogs?category=${category}`)
+        const response = await axios.get(`https://blink-website-v2.herokuapp.com/blogs?category=${category}`)
         console.log(response.data)
         if (response.status === 200) {
             setData(response.data)
@@ -89,10 +89,10 @@ const News = () => {
     }
 
     const fetchLatestBlog = async () => {
-        const totalBlog = await axios.get(`http://localhost:4000/blogs`)
+        const totalBlog = await axios.get(`https://blink-website-v2.herokuapp.com/blogs`)
         const start = totalBlog.data.length - 4
         const end = totalBlog.data.length
-        const response =  await axios.get(`http://localhost:4000/blogs?_start=${start}&_end=${end}`)
+        const response =  await axios.get(`https://blink-website-v2.herokuapp.com/blogs?_start=${start}&_end=${end}`)
         if (response.status === 200) {
             setLatestBlog(response.data)
         } else {
