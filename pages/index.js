@@ -1,8 +1,13 @@
+import axios from 'axios'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Col, Container, Row } from 'reactstrap'
 
 export default function Home() {
+
+  //pre-fetch to wake up herokuapp server
+  const totalBlog = axios.get(`https://blink-website-v2.herokuapp.com/blogs`)
+  
   return (
     <>
       <Head>
