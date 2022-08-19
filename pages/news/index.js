@@ -125,7 +125,7 @@ const News = () => {
             <Row>
                 {data.length === 0 && (
                     <div className="text-center mb-0">
-                        <h2 style={{color: '#fff'}}>No Blog Found</h2>
+                        <h2 style={{color: '#fff'}}>Please wait 20 seconds and manually refresh the page to refetch blogs from unactive heroku server.</h2>
                     </div>
                 )}
 
